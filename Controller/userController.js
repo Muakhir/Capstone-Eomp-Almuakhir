@@ -60,7 +60,7 @@ userRouter.patch('/:id/updateUser',bodyParser.json(),(req,res)=>{
 })
 
 // login route
-userRouter.post('/:id/login',bodyParser.json(),(req,res)=>{
+userRouter.post('/login',bodyParser.json(),(req,res)=>{
 try{users.login(req,res)}catch(e){
 res.json({status: res.statusCode, msg: "Failed to login"})
 }
