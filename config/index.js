@@ -1,3 +1,7 @@
+import { createPool } from "mysql"
+import { config } from "dotenv"
+config()
+
 let sqlConnect = createPool({
     host:process.env.DB_HOST,
     database:process.env.DB_Name,
