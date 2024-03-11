@@ -28,15 +28,25 @@ class Cart {
         });
     }
 
-    async updateCartItemQuantity(req, res) {
+    // async updateCartItemQuantity(req, res) {
+    //     const { cartItemId } = req.params;
+    //     const { prodQuantity } = req.body;
+    //     const qry = `UPDATE Cart SET prodQuantity = ? WHERE cartItemId = ?`;
+    //     db.query(qry, [prodQuantity, cartItemId], (err) => {
+    //         if (err) throw err;
+    //         res.json({ status: res.statusCode, message: 'Cart item quantity updated' });
+    //     });
+    // }
+    async updateCartItem(req, res) {
         const { cartItemId } = req.params;
-        const { prodQuantity } = req.body;
-        const qry = `UPDATE Cart SET prodQuantity = ? WHERE cartItemId = ?`;
-        db.query(qry, [prodQuantity, cartItemId], (err) => {
+        const { prodID, userID, prodQuantity } = req.body;
+        const qry = `UPDATE Cart SET prodID = ?, userID = ?, prodQuantity = ? WHERE cartItemId = ?`;
+        db.query(qry, [prodID, userID, prodQuantity, cartItemId], (err) => {
             if (err) throw err;
-            res.json({ status: res.statusCode, message: 'Cart item quantity updated' });
+            res.json({ status: res.statusCode, message: 'Cart item updated' });
         });
     }
+    
 }
 
 export { Cart };
