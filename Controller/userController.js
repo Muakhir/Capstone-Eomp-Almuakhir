@@ -66,7 +66,7 @@ res.json({status: res.statusCode, msg: "Failed to login"})
 }
 })
 
-userRouter.get('users/:id/cart', (req, res) => {
+userRouter.get('/users/:id/cart', (req, res) => {
     try {
         users.fetchCartItems(req, res);
     } catch (e) {
@@ -75,7 +75,7 @@ userRouter.get('users/:id/cart', (req, res) => {
 });
 
 // Add to Cart
-userRouter.post('users/:id/add', (req, res) => {
+userRouter.post('/users/:id/add', (req, res) => {
     try {
         users.addToCart(req, res);
     } catch (e) {
@@ -84,7 +84,7 @@ userRouter.post('users/:id/add', (req, res) => {
 });
 
 // Remove Item
-userRouter.delete('users/:id/:cartItemId/delete', (req, res) => {
+userRouter.delete('/users/:id/:cartItemId/delete', (req, res) => {
     try {
         users.removeFromCart(req, res);
     } catch (e) {
@@ -93,7 +93,7 @@ userRouter.delete('users/:id/:cartItemId/delete', (req, res) => {
 });
 
 // Update Item Quantity
-userRouter.patch('users/:id/:cartItemId/update', (req, res) => {
+userRouter.patch('/users/:id/:cartItemId/update', (req, res) => {
     try {
         users.updateCartItemQuantity(req, res);
     } catch (e) {
