@@ -28,33 +28,15 @@ class Cart {
         });
     }
 
-    // async updateCartItemQuantity(req, res) {
-    //     const { cartItemId } = req.params;
-    //     const { prodQuantity } = req.body;
-    //     const qry = `UPDATE Cart SET prodQuantity = ? WHERE cartItemId = ?`;
-    //     db.query(qry, [prodQuantity, cartItemId], (err) => {
-    //         if (err) throw err;
-    //         res.json({ status: res.statusCode, message: 'Cart item quantity updated' });
-    //     });
-    // }
-    async updateCartItem(req, res) {
+    async updateCartItemQuantity(req, res) {
         const { cartItemId } = req.params;
-        const { prodID, userID, prodQuantity } = req.body;
-    
-        if (!prodID || !userID || !prodQuantity) {
-            return res.status(400).json({ message: 'Missing required parameters' });
-        }
-    
-        const qry = `UPDATE Cart SET prodID = ?, userID = ?, prodQuantity = ? WHERE cartItemId = ?`;
-        db.query(qry, [prodID, userID, prodQuantity, cartItemId], (err) => {
-            if (err) {
-                console.error('Error updating cart item:', err);
-                return res.status(500).json({ message: 'Failed to update cart item' });
-            }
-            res.json({ message: 'Cart item updated' });
+        const { prodQuantity } = req.body;
+        const qry = `UPDATE Cart SET prodQuantity = ? WHERE cartItemId = ?`;
+        db.query(qry, [prodQuantity, cartItemId], (err) => {
+            if (err) throw err;
+            res.json({ status: res.statusCode, message: 'Cart item quantity updated' });
         });
     }
-    
     
 }
 
