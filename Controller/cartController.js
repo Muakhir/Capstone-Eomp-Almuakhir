@@ -26,7 +26,7 @@ cartRouter.post('/add', (req, res) => {
 });
 
 // Remove from Cart
-cartRouter.delete('/:cartItemId', (req, res) => {
+cartRouter.delete('/:id/delete', (req, res) => {
     try {
         cart.removeFromCart(req, res);
     } catch (e) {
@@ -35,7 +35,7 @@ cartRouter.delete('/:cartItemId', (req, res) => {
 });
 
 // Update Cart Item Quantity
-cartRouter.patch('/:cartItemId', (req, res) => {
+cartRouter.patch('/:id/update', (req, res) => {
     try {
         cart.updateCartItemQuantity(req, res);
     } catch (e) {
