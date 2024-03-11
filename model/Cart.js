@@ -21,7 +21,7 @@ class Cart {
 
     async removeFromCart(req, res) {
         const { cartItemId } = req.params;
-        const qry = `DELETE FROM Cart WHERE id = ?`;
+        const qry = `DELETE FROM Cart WHERE CartItemId = ?`;
         db.query(qry, [cartItemId], (err) => {
             if (err) throw err;
             res.json({ status: res.statusCode, message: 'Item removed from cart' });
@@ -37,8 +37,6 @@ class Cart {
             res.json({ status: res.statusCode, message: 'Cart item quantity updated' });
         });
     }
-
-    // Other methods like fetchUserCart, checkout, etc.
 }
 
 export { Cart };
