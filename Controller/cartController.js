@@ -4,7 +4,6 @@ import { cart } from '../model/index.js';
 
 const cartRouter = express.Router();
 
-
 cartRouter.use(bodyParser.json());
 
 // Fetch Cart Items
@@ -25,7 +24,7 @@ cartRouter.post('/add', (req, res) => {
     }
 });
 
-// Remove from Cart
+// Remove Item
 cartRouter.delete('/:cartItemId/delete', (req, res) => {
     try {
         cart.removeFromCart(req, res);
@@ -34,7 +33,7 @@ cartRouter.delete('/:cartItemId/delete', (req, res) => {
     }
 });
 
-// Update Cart Item Quantity
+// Update Item Quantity
 cartRouter.patch('/:cartItemId/update', (req, res) => {
     try {
         cart.updateCartItemQuantity(req, res);
