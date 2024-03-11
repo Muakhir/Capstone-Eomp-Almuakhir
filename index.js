@@ -1,6 +1,6 @@
 import {userRouter,express} from "./Controller/userController.js";
 import {productRouter} from "./Controller/productController.js"
-// import { cartRouter } from "./Controller/cartController.js";
+import { cartRouter } from "./Controller/cartController.js";
 import cookieParser from "cookie-parser";
 import {errorHandling} from "./middleware/ErrorHandling.js"
 import path from "path"
@@ -40,7 +40,7 @@ app.get('^/$|Capstone', (req,res)=>{
 })
 app.use('/users', userRouter)
 app.use('/products', productRouter)
-// app.use('/cart', cartRouter)
+app.use('/cart', cartRouter)
 app.use(errorHandling)
 app.listen(port,()=>{
     console.log(`Server is running at Port: http://localhost:${port}`);
