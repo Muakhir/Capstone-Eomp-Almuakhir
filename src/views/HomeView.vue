@@ -3,15 +3,21 @@
     <span><SpinnerVue></SpinnerVue></span>
     <p><SpinnerVue></SpinnerVue><SpinnerVue></SpinnerVue></p>
   </div>
-  <div>
-    <header></header>
-    <div class="container-fluid">
+  <main class="container-fluid">
+    <div class="row">
+      <div class="col text">
+        <h2>WELCOME TO <span class="mill" style="--i: 1">MILLENIUM</span></h2>
+      </div>
       <div class="row">
-        <h2 class="display-2">Home</h2>
-        <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta velit quaerat repellendus maiores a magni minima excepturi molestias in, debitis magnam itaque non harum! Nisi maxime qui nulla aperiam praesentium.</p>
+        <div class="col">
+          <img class="Himg" src="https://iili.io/JWNDP8g.png" alt="">
+        </div>
+        <div class="col">
+          <img class="Himg" src="https://iili.io/JWNcevS.png" alt="">
+        </div>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -39,6 +45,53 @@ export default {
 </script>
 
 <style scoped>
-/* Add your custom styles here */
+main{
+  padding: 50px;
+}
+.mill{
+  color: #CAA036;
+}
+h2{
+  padding: 50px;
+  font-weight: 600;
+}
+
+.Himg {
+  border-radius: 25px;
+  width: 300px;
+  height: 400px;
+  box-shadow: 5px 5px 15px #040404;
+  border: #ffff;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.Himg:hover {
+  transform: scale(1.05);
+  box-shadow: 5px 15px 20px #10100f;
+}
+
+.text span {
+  animation: zoomup 2s linear infinite;
+  animation-delay: calc(200ms * var(--i));
+}
+
+@keyframes zoomup {
+  0%,
+  100% {
+    color: #e4e2dd;
+    filter: blur(1px);
+    text-shadow: 0 0 10px #CAA036, 0 0 20px #e4e2dd, 0 0 30px #e4e2dd,
+      0 0 40px #CAA036, 0 0 60px #637074, 0 0 80px #637074, 0 0 100px #637074;
+  }
+
+  5%,
+  95% {
+    filter: blur(0);
+    color: #CAA036;
+    text-shadow: none;
+  }
+}
+
 </style>
+
 
