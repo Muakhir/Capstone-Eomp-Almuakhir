@@ -7,7 +7,7 @@ import {applyToken} from '@/service/AuthenticateUser.js'
 
 
 
-const URL = 'https://capstone-dummy.onrender.com/'
+const URL = 'https://capstone-eomp-almuakhir.onrender.com/'
 
 export default createStore({
   state: {
