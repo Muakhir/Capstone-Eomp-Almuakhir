@@ -1,30 +1,37 @@
 <template>
-    <div class="container">
-        <div>
-            <input type="text" placeholder="Search" v-model="searchQuery">
-            <button @click="sortByAmount">Sort</button>
+    <main class="container-fluid">
+        <div class="container">
+            <div>
+                <input type="text" placeholder="Search" v-model="searchQuery">
+                <button @click="sortByAmount">Sort</button>
+            </div>
+            <div class="row" v-if="sortedProducts.length > 0">
+                <Card v-for="product in sortedProducts" :key="product.prodID">
+                    <template #cardImg>
+                        <img :src="product.prodImg" alt="">
+                    </template>
+                    <template #cardHeader>
+                        <h4 class="card-title">{{ product.prodName }}</h4>
+                    </template>
+                    <template #cardBody>
+                        <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">
+                            Quantity: {{ product.prodQuantity }}
+                        </p>
+                        <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">
+                            Amount: R{{ product.prodAmount }}
+                        </p> 
+                        <router-link :to="{name: 'product', params: {id: product.prodID}}" class="router-link">
+                        <button>View More</button>
+                        </router-link>
+                    </template>
+                </Card>
+            </div>
+            <div class="row" v-else>
+                <span><SpinnerVue></SpinnerVue></span>
+                <p><SpinnerVue></SpinnerVue><SpinnerVue></SpinnerVue></p>
+            </div>
         </div>
-        <div class="row" v-if="sortedProducts.length > 0">
-    <Card v-for="product in sortedProducts" :key="product.prodID">
-                <template #cardHeader>
-                    <h4 class="card-title">{{ product.prodName }}</h4>
-                </template>
-                <template #cardBody>
-                    <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">
-                        Quantity: {{ product.prodQuantity }}
-                    </p>
-                    <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">
-                        Amount: R{{ product.prodAmount }}
-                    </p>
-                    <router-link :to="{name: 'product', params: {id: product.prodID}}">View More</router-link>
-                </template>
-            </Card>
-        </div>
-        <div class="row" v-else>
-        <span><SpinnerVue></SpinnerVue></span>
-        <p><SpinnerVue></SpinnerVue><SpinnerVue></SpinnerVue></p>
-    </div>
-    </div>
+    </main>
 </template>
 
 <script>
@@ -33,12 +40,13 @@ import Card from '@/components/Card.vue';
 export default {
     name: 'ProductsView',
     components: {
-        Card,SpinnerVue
+        Card,
+        SpinnerVue
     },
     data() {
         return {
             searchQuery: '',
-            sortOrder: 1 // 1 for ascending, -1 for descending
+            sortOrder: 1 
         };
     },
     computed: {
@@ -46,16 +54,14 @@ export default {
             return this.$store.state.products;
         },
         filteredProducts() {
-    if (!this.products) {
-        return [];
-    }
-    // Filter products based on search query
-    return this.products.filter(product =>
-        product.prodName.toLowerCase().includes(this.searchQuery.toLowerCase())
-    );
-},
+            if (!this.products) {
+                return [];
+            }
+            return this.products.filter(product =>
+                product.prodName.toLowerCase().includes(this.searchQuery.toLowerCase())
+            );
+        },
         sortedProducts() {
-            // Sort filtered products by prodAmount
             return this.filteredProducts.slice().sort((a, b) => this.sortOrder * (a.prodAmount - b.prodAmount));
         }
     },
@@ -64,7 +70,6 @@ export default {
     },
     methods: {
         sortByAmount() {
-            // Toggle sorting order
             this.sortOrder *= -1;
         }
     }
@@ -72,5 +77,28 @@ export default {
 </script>
 
 <style scoped>
+.card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+}
 
+.card-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.router-link button {
+  color: #caa036;
+  cursor: pointer;
+}
 </style>
+
