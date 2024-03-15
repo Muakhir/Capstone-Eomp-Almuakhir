@@ -1,4 +1,5 @@
 <template>
+  <main class="container-fluid">
     <div class="container">
       <div>
         <h2 id="userHeading" class="display-4 mt-4 mb-4">USER</h2>
@@ -86,7 +87,9 @@
                 <td>
                   {{ product.prodQuantity }}
                 </td>
-                <td>R {{ product.prodAmount }}</td>
+                <td class="prod-amount">
+                  R {{ product.prodAmount }}
+                </td>
                 <td class="d-flex gap-2">
                   <button
                     id="deleteBut"
@@ -103,6 +106,8 @@
         </div>
       </div>
     </div>
+
+  </main>
   </template>
 
 <script>
@@ -139,7 +144,30 @@ import AddProduct from "../components/AddProduct.vue"
 </script>
 
 <style scoped>
-#prodImg{
+table.table {
+  background-color: transparent !important;
+  color: white;
+  border: none;
+}
+
+table.table th,
+table.table td {
+  background-color: transparent !important;
+  color: #fff;
+}
+
+button.btn {
+  background-color: #caa036;
+  color: white;
+}
+
+#prodImg {
   max-width: 250px;
 }
+
+.table .prod-amount {
+  color: #caa036;
+}
 </style>
+
+
