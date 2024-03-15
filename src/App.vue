@@ -29,7 +29,6 @@ export default{
   text-align: center;
   color: #2c3e50;
 }
-
 main {
   background-color: #ffffff; 
   background-image: url('https://iili.io/JWNuV07.jpg');

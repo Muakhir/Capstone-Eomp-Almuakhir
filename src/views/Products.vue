@@ -1,9 +1,13 @@
 <template>
     <main class="container-fluid">
         <div class="container">
-            <div>
-                <input type="text" placeholder="Search" v-model="searchQuery">
-                <button @click="sortByAmount">Sort</button>
+            <div class="d-flex align-items-center justify-content-between">
+                <div>
+                    <input type="text" placeholder="Search" v-model="searchQuery" class="form-control">
+                </div>
+                <div>
+                    <button @click="sortByAmount" class="btn btn-custom">Sort</button>
+                </div>
             </div>
             <div class="row" v-if="sortedProducts.length > 0">
                 <Card v-for="product in sortedProducts" :key="product.prodID">
@@ -21,7 +25,7 @@
                             Amount: R{{ product.prodAmount }}
                         </p> 
                         <router-link :to="{name: 'product', params: {id: product.prodID}}" class="router-link">
-                        <button>View More</button>
+                            <button class="btn btn-custom">View More</button>
                         </router-link>
                     </template>
                 </Card>
@@ -77,28 +81,53 @@ export default {
 </script>
 
 <style scoped>
-.card {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    padding: 20px;
-}
+    main {
+        background-image: url('https://iili.io/JWixgyv.png');
+        background-size: cover; 
+        background-position: center; 
+        min-height: 100vh; 
+    }
 
-.card-title {
-    font-size: 20px;
-    margin-bottom: 10px;
-}
+    .form-control {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
 
-.card-text {
-    font-size: 16px;
-    margin-bottom: 5px;
-}
+    .btn-custom {
+        color: #caa036;
+        background-color: #fff;
+        border-color: #caa036;
+    }
 
-.router-link button {
-  color: #caa036;
-  cursor: pointer;
-}
+    .btn-custom:hover {
+        color: #fff;
+        background-color: #caa036;
+        border-color: #caa036;
+    }
+
+    .card {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 15px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        padding: 20px;
+    }
+
+    .card-title {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .card-text {
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+
+    .router-link button {
+        color: #caa036;
+        cursor: pointer;
+    }
 </style>
+
 

@@ -1,13 +1,17 @@
 <template>
-    <div class="card">
-      <div class="card-img">
-        <slot name="cardImg"></slot>
-      </div>
-      <div class="card-body">
-        <slot name="cardHeader"></slot>
-        <slot name="cardBody"></slot>
-      </div>
-    </div>
+    <main>
+        <div class="container">
+            <div class="card">
+              <div class="card-img">
+                <slot name="cardImg"></slot>
+              </div>
+              <div class="card-body">
+                <slot name="cardHeader"></slot>
+                <slot name="cardBody"></slot>
+              </div>
+            </div>
+        </div>
+    </main>
   </template>
   
   <script>
@@ -17,19 +21,57 @@
   </script>
   
   <style scoped>
-    .card {
-    background-color: #fff;
-    border: 1px solid #ccc;
+  main {
+    background-image: url('https://iili.io/JWixgyv.png');
+    background-size: cover; 
+    background-position: center;
+    min-height: 100vh; 
+    border-radius: 30px;
+    margin-top: 20px; 
+    margin-bottom: 20px; 
+  }
+  
+  .container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;  
+    justify-content: center;
+  }
+  
+  .card {
+    background: linear-gradient(to bottom right, white, #9f7815); 
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px; 
-   }
+    width: calc(50% - 10px);
+    padding: 30px;  
+    box-sizing: border-box;
+    margin: 0 auto;
+  }
   
   .card-img {
-    width: 300px;
+    display: flex;
+    justify-content: center;
   }
   
   .card-body {
     padding: 20px;
   }
+  
+  @media (max-width: 600px) {
+    .card {
+      width: 100%;
+    }
+  }
   </style>
+  
+  
+
+
+  
+  
+  
+  
