@@ -144,6 +144,12 @@ import AddProduct from "../components/AddProduct.vue"
 </script>
 
 <style scoped>
+main {
+  background-image: url('https://iili.io/JW6KLgV.png');
+  background-color: rgba(0, 0, 0, 0.8); /* Darker background */
+  background-blend-mode: multiply;
+}
+
 table.table {
   background-color: transparent !important;
   color: white;
@@ -169,5 +175,6 @@ button.btn {
   color: #caa036;
 }
 </style>
+
 
 
