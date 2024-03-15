@@ -146,7 +146,7 @@ import AddProduct from "../components/AddProduct.vue"
 <style scoped>
 main {
   background-image: url('https://iili.io/JW6KLgV.png');
-  background-color: rgba(0, 0, 0, 0.8); /* Darker background */
+  background-color: rgba(0, 0, 0, 0.7); /* Darker background */
   background-blend-mode: multiply;
 }
 
@@ -165,6 +165,14 @@ table.table td {
 button.btn {
   background-color: #caa036;
   color: white;
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+  border: none;
+}
+
+button.btn:hover {
+  background-color: #fff;
+  color: #000;
+  transform: scale(1.1);
 }
 
 #prodImg {
@@ -175,6 +183,9 @@ button.btn {
   color: #caa036;
 }
 </style>
+
+
+
 
 
 
