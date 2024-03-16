@@ -33,6 +33,9 @@
                 <li class="nav-item ms-4">
                   <router-link to="/login" class="nav-link Etext">Login</router-link>
                 </li>
+                <li class="nav-item ms-4">
+                  <router-link to="/Profile" class="nav-link Etext">Profile</router-link>
+                </li>
               </ul>
           </div>
         </div>

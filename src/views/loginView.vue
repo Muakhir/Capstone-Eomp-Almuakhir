@@ -1,29 +1,37 @@
 <template>
+  <main>
     <div class="container-fluid">
-      <div class="mb-3">
-        <input type="email" class="form-control w-50 mx-auto" required placeholder="Email" v-model="payload.emailAdd">
-      </div>
-      <div class="mb-3">
-        <div class="row">
-          <div class="col">
-            <input
-              class="form-control w-50 mx-auto"
-              required
-              placeholder="Password"
-              v-model="payload.userPwd"
-              :type="passwordFieldType"
-            />
+      <div class="row justify-content-center">
+        <div class="col-md-6 mt-5">
+          <div class="mb-3">
+            <input type="email" class="form-control" required placeholder="Email" v-model="payload.emailAdd">
           </div>
-          <div class="col">
-            <button type="button" class="btn btn-secondary me-5 view-password-btn" @click="togglePasswordVisibility">
-              <i class="fas" :class="passwordVisibilityIcon"></i>
-            </button>
+          <div class="mb-3">
+            <div class="row align-items-center">
+              <div class="col">
+                <input
+                  class="form-control"
+                  required
+                  placeholder="Password"
+                  v-model="payload.userPwd"
+                  :type="passwordFieldType"
+                />
+              </div>
+              <div class="col-auto">
+                <button type="button" class="btn btn-secondary view-password-btn" @click="togglePasswordVisibility">
+                  <i class="fas" :class="passwordVisibilityIcon"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <button type="button" class="btn btn-primary" @click="login">Login</button>
           </div>
         </div>
       </div>
-      <button type="button" class="btn btn-primary" @click="login">Login</button>
     </div>
-  </template>
+  </main>
+</template>
   
   <script>
   export default {
@@ -74,6 +82,24 @@
   </script>
   
   <style scoped>
-  /* Add your custom styles here */
+  main {
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    background-image: url('https://iili.io/JXH5MX4.png');
+  }
+  
+  .form-control {
+    width: 100%;
+  }
+  
+  .view-password-btn {
+    margin-top: 8px;
+  }
   </style>
+  
+  
+  
   

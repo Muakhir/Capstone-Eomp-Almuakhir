@@ -1,60 +1,64 @@
 <template>
+  <main class="d-flex justify-content-center align-items-center">
     <div class="container-fluid">
-          <div class="mb-3">
-            <input type="text" class="form-control w-50 mx-auto" required placeholder="First Name" v-model="payload.firstName">
+      <div class="mb-3">
+        <input type="text" class="form-control input-field" required placeholder="First Name" v-model="payload.firstName">
+      </div>
+      <div class="mb-3">
+        <input type="text" class="form-control input-field" required placeholder="Last Name" v-model="payload.lastName">
+      </div>
+      <div class="mb-3">
+        <input type="number" class="form-control input-field" required placeholder="Age" v-model="payload.userAge">
+      </div>
+      <div class="mb-3">
+        <input type="text" class="form-control input-field" required placeholder="Gender" v-model="payload.gender">
+      </div>
+      <div class="mb-3">
+        <input type="email" class="form-control input-field" required placeholder="Email" v-model="payload.emailAdd">
+      </div>
+      <div class="mb-3">
+        <div class="row align-items-center">
+          <div class="col">
+            <input
+              class="form-control input-field"
+              required
+              placeholder="Password"
+              v-model="payload.userPwd"
+              :type="passwordFieldType"
+            />
           </div>
-          <div class="mb-3">
-            <input type="text" class="form-control w-50 mx-auto" required placeholder="Last Name" v-model="payload.lastName">
+          <div class="col-auto">
+            <button type="button" class="btn btn-secondary view-password-btn" @click="togglePasswordVisibility">
+              <i class="fas" :class="passwordVisibilityIcon"></i>
+            </button>
           </div>
-          <div class="mb-3">
-            <input type="number" class="form-control w-50 mx-auto" required placeholder="Age" v-model="payload.userAge">
-          </div>
-          <div class="mb-3">
-            <input type="text" class="form-control w-50 mx-auto" required placeholder="Gender" v-model="payload.gender">
-          </div>
-          <div class="mb-3">
-            <input type="email" class="form-control w-50 mx-auto" required placeholder="Email" v-model="payload.emailAdd">
-          </div>
-          <div class="mb-3">
-              
-              <div class="row">
-                  <div class="col">
-                </div>
-                <input
-                class="form-control w-50 mx-auto"
-                required
-                placeholder="Password"
-                v-model="payload.userPwd"
-                :type="passwordFieldType"
-                />
-                <div class="col">
-            <button type="button" class="btn btn-secondary me-5 view-password-btn" @click="togglePasswordVisibility"><i class="fas" :class="passwordVisibilityIcon"></i></button>
-            
         </div>
-        </div>
+      </div>
+      <div class="mb-3">
+        <button type="button" class="btn btn-primary" @click="register">Register</button>
+      </div>
     </div>
-    <button type="button" class="btn btn-primary" @click="register">Register</button>
-  </div>
-  
+  </main>
 </template>
 
 <script>
-import Swal from 'sweetalert2'
-    export default {
-        data(){
-            return{
-                payload: {
-                firstName: "",
-                lastName: "",
-                userAge: "",
-                gender: "",
-                emailAdd: "",
-                userPwd: ""
+import Swal from 'sweetalert2';
+
+export default {
+  data() {
+    return {
+      payload: {
+        firstName: "",
+        lastName: "",
+        userAge: "",
+        gender: "",
+        emailAdd: "",
+        userPwd: ""
       },
       showPassword: false
     };
-        },
-        methods: {
+  },
+  methods: {
     async register() {
       try {
         await this.$store.dispatch("register", this.payload);
@@ -90,10 +94,31 @@ import Swal from 'sweetalert2'
     passwordVisibilityIcon() {
       return this.showPassword ? 'fa-eye-slash' : 'fa-eye';
     }
-  },
-}
+  }
+};
 </script>
 
 <style scoped>
+main {
+  margin: 0;
+  padding: 0;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  background-image: url('https://iili.io/JXHPMBa.png');
+}
 
+.container-fluid {
+  width: 50%;
+}
+
+.input-field {
+  width: 100%;
+  height: 40px;
+}
+
+.view-password-btn {
+  margin-top: 8px;
+}
 </style>
+
