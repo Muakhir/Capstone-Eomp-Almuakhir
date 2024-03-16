@@ -37,7 +37,7 @@ import Card from '@/components/Card.vue';
 export default {
     name: 'ProductView',
     components: {
-        Card,SpinnerVue
+        Card,SpinnerVue,
     },
     computed:{
         product(){
@@ -51,18 +51,72 @@ export default {
 </script>
 
 <style scoped>
-     .product-img{
-       width: auto;
-     }
-     .card1{
-        border-radius: 15px;
-        max-width: 800px;
-     }
-     .card2{
-        border-radius: 15px;
-        max-width: 800px;
-     }
-     .col{
-        padding: 10px;
-     }
+.row {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.product-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card1, .card2 {
+    width: 500px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.card2{
+    width: 700px;
+}
+
+.card-title {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.product-img {
+    width: 100%;
+    height: auto;
+}
+
+.card-text {
+    margin: 0;
+}
+
+.bg-gradient {
+    background: linear-gradient(to bottom, #343a40, #202328);
+}
+
+.bg-dark-subtle {
+    color: #fff;
+}
+
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #3aafa9;
+    animation: spin 1s linear infinite;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
 </style>
+
