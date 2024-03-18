@@ -8,7 +8,8 @@
         <p><strong>Age:</strong> {{ user.userAge }}</p>
         <p><strong>Email:</strong> {{ user.emailAdd }}</p>
         <button class="btn btn-primary" @click="editUser">Edit Profile</button>
-        <button class="btn btn-danger delete-btn" @click="deleteUser">Delete Account</button>
+        <button class="btn btn-danger delete-btn" @click="confirmDeleteUser">Delete Account</button>
+        <button class="btn btn-secondary" @click="confirmLogout">Logout</button>
       </div>
       <div v-else>
         <p>No user data available</p>
@@ -18,6 +19,8 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2';
+
 export default {
   data() {
     return {
@@ -47,20 +50,55 @@ export default {
       }
     },
     editUser() {
-      this.$router.push( '/updateProfile' );
+      this.$router.push('/updateProfile');
     },
     async deleteUser() {
-      try {
-        await this.$store.dispatch('deleteUser', { id: this.user._id });
-        this.fetchUserData(); // Fetch updated user data after deletion
-        this.$router.push('/login');
-      } catch (error) {
-        console.error('Error deleting user:', error);
-      }
+      console.log('Deleting user:', this.user._id);
+      this.user = null;
+    },
+    confirmDeleteUser() {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'You will not be able to recover your account!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.deleteUser();
+          Swal.fire(
+            'Deleted!',
+            'Your account has been deleted.',
+            'success'
+          );
+        }
+      });
+    },
+    confirmLogout() {
+      Swal.fire({
+        title: 'Logout',
+        text: 'Are you sure you want to logout?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, logout'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.logout();
+        }
+      });
+    },
+    logout() {
+      document.cookie = 'userAuthenticated=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      this.$router.push('/login');
     }
   }
 };
 </script>
+
 
 
 
