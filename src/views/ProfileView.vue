@@ -24,7 +24,8 @@ import Swal from 'sweetalert2';
 export default {
   data() {
     return {
-      user: null
+      user: null,
+      userID: ''
     };
   },
   mounted() {
@@ -52,10 +53,6 @@ export default {
     editUser() {
       this.$router.push('/updateProfile');
     },
-    async deleteUser() {
-      console.log('Deleting user:', this.user._id);
-      this.user = null;
-    },
     confirmDeleteUser() {
       Swal.fire({
         title: 'Are you sure?',
@@ -68,13 +65,17 @@ export default {
       }).then((result) => {
         if (result.isConfirmed) {
           this.deleteUser();
-          Swal.fire(
-            'Deleted!',
-            'Your account has been deleted.',
-            'success'
-          );
         }
       });
+    },
+    async deleteUser() {
+      try {
+        await this.$store.dispatch("deleteUser", { id: this.user.userID });
+        this.logout();
+      } catch (error) {
+        console.error('Error deleting user:', error);
+        Swal.fire('Error', 'Failed to delete user.', 'error');
+      }
     },
     confirmLogout() {
       Swal.fire({
@@ -92,12 +93,16 @@ export default {
       });
     },
     logout() {
-      document.cookie = 'userAuthenticated=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-      this.$router.push('/login');
+      document.cookie = 'userAuthenticated=;path=/;';
+      setTimeout(() => {
+        this.$router.push('/login');
+      }, 1000);
     }
   }
 };
 </script>
+
+
 
 
 
@@ -154,10 +159,3 @@ export default {
   background-color: #dc3545;
 }
 </style>
-
-
-
-  
-
-  
-  
