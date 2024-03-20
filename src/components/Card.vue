@@ -22,7 +22,7 @@
   
   <style scoped>
   main {
-    background-image: url('https://iili.io/JWixgyv.png');
+    background-image: url('https://iili.io/JXSjXsV.jpg');
     background-size: cover; 
     background-position: center;
     min-height: 100vh; 
@@ -43,18 +43,13 @@
   }
   
   .card {
-    background: linear-gradient(to bottom right, white, #9f7815); 
+    background-color: rgba(0, 0, 0, 0.377); 
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: calc(50% - 10px);
     padding: 30px;  
     box-sizing: border-box;
     margin: 0 auto;
-  }
-  
-  .card-img {
-    display: flex;
-    justify-content: center;
   }
   
   .card-body {

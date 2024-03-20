@@ -1,7 +1,6 @@
 <template>
   <div v-if="loading">
-    <span><SpinnerVue></SpinnerVue></span>
-    <p><SpinnerVue></SpinnerVue><SpinnerVue></SpinnerVue></p>
+    <span><SpinnerVue></SpinnerVue><SpinnerVue></SpinnerVue></span>
   </div>
   <main class="container-fluid">
     <div class="row">
@@ -10,10 +9,10 @@
       </div>
       <div class="row">
         <div class="col">
-          <img class="Himg" src="https://iili.io/JWNDP8g.png" alt="">
+          <img class="Himg" src="https://iili.io/JXSBe0g.jpg" alt="">
         </div>
         <div class="col">
-          <img class="Himg" src="https://iili.io/JWNcevS.png" alt="">
+          <img class="Himg" src="https://iili.io/JXSBUeR.jpg" alt="">
         </div>
       </div>
     </div>
@@ -30,26 +29,24 @@ export default {
   },
   data() {
     return {
-      loading: true // Assuming you want to show the spinner initially
+      loading: true
     };
   },
   mounted() {
-
-    // Simulate some asynchronous operation
     setTimeout(() => {
-      // After some time (simulated asynchronous operation), set loading to false
       this.loading = false;
-    }, 2000); // Change 2000 to the actual time your operation takes
+    }, 2000);
   }
 };
 </script>
 
 <style scoped>
 main{
+  background-image: url('https://iili.io/JXSnIwl.png');
   padding: 50px;
 }
 .mill{
-  color: #CAA036;
+  color: #36cac0;
 }
 h2{
   padding: 50px;
@@ -78,16 +75,16 @@ h2{
 @keyframes zoomup {
   0%,
   100% {
-    color: #e4e2dd;
+  color: #36cac0;
     filter: blur(1px);
-    text-shadow: 0 0 10px #CAA036, 0 0 20px #e4e2dd, 0 0 30px #e4e2dd,
-      0 0 40px #CAA036, 0 0 60px #637074, 0 0 80px #637074, 0 0 100px #637074;
+    text-shadow: 0 0 10px #36cac0, 0 0 20px #e4e2dd, 0 0 30px #e4e2dd,
+      0 0 40px #36cac0, 0 0 60px #637074, 0 0 80px #637074, 0 0 100px #637074;
   }
 
   5%,
   95% {
     filter: blur(0);
-    color: #CAA036;
+    color: #36cac0;
     text-shadow: none;
   }
 }

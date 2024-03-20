@@ -31,10 +31,10 @@
               <router-link to="/signup" class="nav-link Etext">Signup</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/login" class="nav-link Etext">Login</router-link>
+              <router-link to="/login" class="nav-link Etext2">Login</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/Profile" class="nav-link Etext">Profile</router-link>
+              <router-link to="/Profile" class="nav-link Etext3">Profile</router-link>
             </li>
           </ul>
         </div>
@@ -77,16 +77,36 @@ a {
 }
 
 .nav-link.Etext {
-  color: #caa036;
+  color: #000000;
 }
 
 .nav-link.Etext:hover {
+  color: #caa036;
+  box-shadow: 2px 2px 2px #caa036;
+}
+
+.nav-link.Etext2 {
   color: #000000;
-  box-shadow: 2px 2px 2px #000000;
+}
+
+.nav-link.Etext2:hover {
+  color: #36cac0;
+  box-shadow: 2px 2px 2px #36cac0;
+}
+
+.nav-link.Etext3 {
+  color: #000000;
+}
+
+.nav-link.Etext3:hover {
+  color: #ca3679;
+  box-shadow: 2px 2px 2px #ca3679;
 }
 
 .nav-link.router-link-exact-active {
-  color: #caa036;
+  border: #000000 solid 1px;
+  border-radius: 15px;
+  box-shadow: 5px 5px #00000052;
 }
 
 @media (max-width: 991.98px) {

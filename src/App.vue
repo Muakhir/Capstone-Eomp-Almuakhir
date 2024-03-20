@@ -30,8 +30,7 @@ export default{
   color: #2c3e50;
 }
 main {
-  background-color: #ffffff; 
-  background-image: url('https://iili.io/JWNuV07.jpg');
+  background-color: #ffffff;
   background-size: cover; 
   background-position: center; 
   color: #ffffff;

@@ -31,8 +31,7 @@
                 </Card>
             </div>
             <div class="row" v-else>
-                <span><SpinnerVue></SpinnerVue></span>
-                <p><SpinnerVue></SpinnerVue><SpinnerVue></SpinnerVue></p>
+                <span><SpinnerVue></SpinnerVue><SpinnerVue></SpinnerVue></span>
             </div>
         </div>
     </main>
@@ -82,7 +81,7 @@ export default {
 
 <style scoped>
     main {
-        background-image: url('https://iili.io/JWixgyv.png');
+        background-image: url('https://iili.io/JXSjXsV.jpg');
         background-size: cover; 
         background-position: center; 
         min-height: 100vh; 
@@ -127,6 +126,9 @@ export default {
     .router-link button {
         color: #caa036;
         cursor: pointer;
+    }
+    img{
+        max-width: 300px;
     }
 </style>
 
