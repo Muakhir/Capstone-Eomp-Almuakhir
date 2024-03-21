@@ -18,23 +18,23 @@
               <router-link to="/products" class="nav-link">Products</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/admin" class="nav-link">Admin</router-link>
-            </li>
-            <li class="nav-item">
               <router-link to="/contact" class="nav-link">Contact</router-link>
+            </li>
+            <li class="nav-item" v-if="isAdmin">
+              <router-link to="/admin" class="nav-link">Admin</router-link>
             </li>
           </ul>
         </div>
         <div>
           <ul class="navbar-nav">
-            <li class="nav-item">
+            <li class="nav-item" v-if="!loggedInUser">
               <router-link to="/signup" class="nav-link Etext">Signup</router-link>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" v-if="!loggedInUser">
               <router-link to="/login" class="nav-link Etext2">Login</router-link>
             </li>
-            <li class="nav-item">
-              <router-link to="/Profile" class="nav-link Etext3">Profile</router-link>
+            <li class="nav-item" v-if="loggedInUser">
+              <router-link to="/profile" class="nav-link Etext3">Profile</router-link>
             </li>
           </ul>
         </div>
@@ -45,8 +45,36 @@
 
 <script>
 export default {
+  computed: {
+    loggedInUser() {
+      // Fetch user data from cookies
+      const cookies = document.cookie.split(';').map(cookie => cookie.trim());
+      const userCookie = cookies.find(cookie => cookie.startsWith('userAuthenticated='));
+      // If user cookie exists, parse and return user data
+      if (userCookie) {
+        try {
+          const userData = JSON.parse(userCookie.split('=')[1]);
+          if (userData && userData.result) {
+            return userData.result;
+          } else {
+            console.error('Invalid user data format:', userData);
+            return null;
+          }
+        } catch (error) {
+          console.error('Error parsing user data:', error);
+          return null;
+        }
+      } else {
+        return null;
+      }
+    },
+    isAdmin() {
+      return this.loggedInUser && this.loggedInUser.userRole === "Admin";
+    },
+  },
 }
 </script>
+
 
 <style scoped>
 .logo {
@@ -111,10 +139,11 @@ a {
 
 @media (max-width: 991.98px) {
   .navbar-nav {
-    margin-top: 10px; /* Add margin to center links vertically */
+    margin-top: 10px;
   }
 }
 </style>
+
 
 
 

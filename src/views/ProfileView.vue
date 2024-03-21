@@ -95,8 +95,10 @@ export default {
     logout() {
       document.cookie = 'userAuthenticated=;path=/;';
       setTimeout(() => {
-        this.$router.push('/login');
+        window.location.reload();
+        window.location.reload();
       }, 1000);
+      this.$router.push('/login');
     }
   }
 };

@@ -7,6 +7,7 @@ import {applyToken} from '@/service/AuthenticateUser.js'
 
 
 
+
 const URL = 'https://capstone-eomp-almuakhir.onrender.com/'
 
 export default createStore({
@@ -159,8 +160,6 @@ export default createStore({
               } else {
                 console.error('applyToken is not a function');
               }
-
-              // Set cookies outside of Vuex store
               document.cookie = `userAuthenticated=${JSON.stringify({ msg, token, result })}; path=/`;
               sweet({
                 title: msg,
@@ -168,7 +167,11 @@ export default createStore({
                 icon: "success",
                 timer: 2000
               })
-              router.push({ name: 'home' });
+              router.push('/Profile')
+              setTimeout(() => {
+                window.location.reload();
+                window.location.reload();
+              }, 1000);
             } else {
               sweet({
                 title: 'Info',

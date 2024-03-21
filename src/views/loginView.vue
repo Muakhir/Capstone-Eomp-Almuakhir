@@ -33,53 +33,49 @@
   </main>
 </template>
   
-  <script>
-  export default {
-    data() {
-      return {
-        payload: {
-          emailAdd: "",
-          userPwd: ""
-        },
-        showPassword: false
-      };
-    },
-    methods: {
-      async login() {
-        try {
-          const { token } = await this.$store.dispatch('login', {
-            emailAdd: this.payload.emailAdd,
-            userPwd: this.payload.userPwd,
-          });
-  
-          if (token) {
-            localStorage.setItem('authToken', token);
-            this.$router.push('/');
-          } else {
-            // Handle error message display if necessary
-          }
-        } catch (e) {
-          // Let Vuex action handle error
-          console.error('Error during login:', e);
+<script>
+export default {
+  data() {
+    return {
+      payload: {
+        emailAdd: "",
+        userPwd: ""
+      },
+      showPassword: false
+    };
+  },
+  methods: {
+    async login() {
+      try {
+        const { token } = await this.$store.dispatch('login', {
+          emailAdd: this.payload.emailAdd,
+          userPwd: this.payload.userPwd,
+        });
+
+        if (token) {
+          localStorage.setItem('authToken', token);
+        } else {
+          console.error('Login failed: Invalid credentials');
         }
-      },
-      redirectToRegisterPage() {
-        this.$router.push({ name: 'register' });
-      },
-      togglePasswordVisibility() {
-        this.showPassword = !this.showPassword;
+      } catch (e) {
+        console.error('Error during login:', e);
       }
     },
-    computed: {
-      passwordFieldType() {
-        return this.showPassword ? 'text' : 'password';
-      },
-      passwordVisibilityIcon() {
-        return this.showPassword ? 'fa-eye-slash' : 'fa-eye';
-      }
+    togglePasswordVisibility() {
+      this.showPassword = !this.showPassword;
     }
-  };
-  </script>
+  },
+  computed: {
+    passwordFieldType() {
+      return this.showPassword ? 'text' : 'password';
+    },
+    passwordVisibilityIcon() {
+      return this.showPassword ? 'fa-eye-slash' : 'fa-eye';
+    }
+  }
+};
+</script>
+
   
   <style scoped>
   main {
