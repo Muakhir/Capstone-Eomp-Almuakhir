@@ -5,14 +5,16 @@
   </nav>
   <NavBar />
   <router-view/>
+  <FooterVue />
 </template>
 
 <script>
 import NavBar from "@/components/NavBar.vue"
+import FooterVue from "@/components/Footer.vue"
 
 export default {
   components: {
-    NavBar
+    NavBar, FooterVue
   }
 }
 </script>
