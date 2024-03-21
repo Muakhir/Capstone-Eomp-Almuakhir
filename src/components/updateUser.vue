@@ -1,6 +1,6 @@
 <template>
   <!-- Button trigger modal -->
-  <button type="button" class="btn modalButton" data-bs-toggle="modal" data-bs-target="#updateUserModal">
+  <button type="button" class="btn custom-btn" data-bs-toggle="modal" data-bs-target="#updateUserModal">
       Update User
   </button>
 
@@ -47,11 +47,7 @@
 </template>
 
 <script>
-// import axios from 'axios';
 import Swal from 'sweetalert2';
-
-// const URL = 'https://capstone-dummy.onrender.com/';
-
 export default {
   data() {
     return {
@@ -69,10 +65,7 @@ export default {
   methods: {
   async updateUser() {
     try {
-      // Dispatch Vuex action to update user data
       await this.$store.dispatch('updateUser', { id: this.payload.userID, data: this.payload });
-
-      // Optionally, display success feedback to the user
       Swal.fire({
         title: 'Update user',
         icon: 'success',
@@ -80,7 +73,6 @@ export default {
       });
     } catch (error) {
       console.error('Error updating user:', error);
-      // Optionally, handle errors or display error feedback
       Swal.fire({
         title: 'Error',
         text: 'An error occurred when updating a user.',
@@ -96,10 +88,16 @@ export default {
 
 <style scoped>
 
+.custom-btn {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgb(252, 252, 252);
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+  border: none;
+}
 
-.modalButton:hover {
-  background-color: #708ad4;
-color: white;
-transform: translateY(-2px);
+.custom-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #36cac0;
+  transform: scale(1.1);
 }
 </style>

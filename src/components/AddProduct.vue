@@ -1,5 +1,5 @@
 <template>
-    <button type="button" class="btn btn-primary" @click="showModal = true">Add Product</button>
+    <button type="button" class="btn custom-btn" @click="showModal = true">Add Product</button>
     <div class="modal" :class="{ 'show': showModal }">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -29,8 +29,8 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" @click="closeModal">Close</button>
-            <button type="button" class="btn btn-primary" @click="AddProduct">Save changes</button>
+            <button type="button" class="btn" @click="closeModal">Close</button>
+            <button type="button" class="btn" @click="AddProduct">Save changes</button>
           </div>
         </div>
       </div>
@@ -59,9 +59,7 @@
       async AddProduct() {
         try {
           await this.$store.dispatch("AddProduct", this.payload);
-          // Close modal after successful registration
           this.closeModal();
-          // Show success message
           Swal.fire({
             title: "Added Successful",
             text: "Product has been added successfully!",
@@ -74,7 +72,7 @@
           }, 3000)
         } catch (error) {
           console.error(error);
-          // Show error message
+
           Swal.fire({
             title: "Error",
             text: "Failed to add Product",
@@ -84,9 +82,7 @@
         }
       },
       closeModal() {
-        // Close modal
         this.showModal = false;
-        // Clear form fields
         this.payload = {
           userID: "",
           firstName: "",
@@ -103,12 +99,19 @@
   </script>
   
   <style scoped>
-  /* Add your modal styles here */
-  .modal {
-    display: none;
-    /* Other modal styles */
-  }
   .modal.show {
-    display: block;
-  }
+    display: block
+}
+.custom-btn {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgb(252, 252, 252);
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+  border: none;
+}
+
+.custom-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ca3679;
+  transform: scale(1.1);
+}
   </style>

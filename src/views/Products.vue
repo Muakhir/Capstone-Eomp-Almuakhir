@@ -5,6 +5,16 @@
                 <div>
                     <input type="text" placeholder="Search" v-model="searchQuery" class="form-control">
                 </div>
+                <div class="dropdown">
+                    <button @click="toggleDropdown" class="btn btn-custom dropdown-toggle" type="button" id="categoryDropdown" aria-haspopup="true" :aria-expanded="isDropdownOpen.toString()">
+                        {{ selectedCategory }}
+                    </button>
+                    <div class="dropdown-menu" :class="{ show: isDropdownOpen }" aria-labelledby="categoryDropdown">
+                        <a class="dropdown-item" href="#" @click="filterByCategory('all')">All</a>
+                        <a class="dropdown-item" href="#" @click="filterByCategory('Card')">Cards</a>
+                        <a class="dropdown-item" href="#" @click="filterByCategory('Structure Deck')">Structure Deck</a>
+                    </div>
+                </div>
                 <div>
                     <button @click="sortByAmount" class="btn btn-custom">Sort</button>
                 </div>
@@ -18,6 +28,9 @@
                         <h4 class="card-title">{{ product.prodName }}</h4>
                     </template>
                     <template #cardBody>
+                        <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">
+                           Category: {{ product.prodCategory }}
+                        </p>
                         <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">
                             Quantity: {{ product.prodQuantity }}
                         </p>
@@ -49,7 +62,9 @@ export default {
     data() {
         return {
             searchQuery: '',
-            sortOrder: 1 
+            sortOrder: 1,
+            isDropdownOpen: false,
+            selectedCategory: 'all'
         };
     },
     computed: {
@@ -60,9 +75,16 @@ export default {
             if (!this.products) {
                 return [];
             }
-            return this.products.filter(product =>
-                product.prodName.toLowerCase().includes(this.searchQuery.toLowerCase())
-            );
+            if (this.selectedCategory === 'all') {
+                return this.products.filter(product =>
+                    product.prodName.toLowerCase().includes(this.searchQuery.toLowerCase())
+                );
+            } else {
+                return this.products.filter(product =>
+                    product.prodCategory === this.selectedCategory &&
+                    product.prodName.toLowerCase().includes(this.searchQuery.toLowerCase())
+                );
+            }
         },
         sortedProducts() {
             return this.filteredProducts.slice().sort((a, b) => this.sortOrder * (a.prodAmount - b.prodAmount));
@@ -74,6 +96,13 @@ export default {
     methods: {
         sortByAmount() {
             this.sortOrder *= -1;
+        },
+        toggleDropdown() {
+            this.isDropdownOpen = !this.isDropdownOpen;
+        },
+        filterByCategory(category) {
+            this.selectedCategory = category;
+            this.isDropdownOpen = false;
         }
     }
 };
@@ -94,8 +123,8 @@ export default {
 
     .btn-custom {
         color: #caa036;
-        background-color: #fff;
-        border-color: #caa036;
+        background-color: #75727288;
+        border-color: #8f8e8b;
     }
 
     .btn-custom:hover {
@@ -127,9 +156,37 @@ export default {
         color: #caa036;
         cursor: pointer;
     }
-    img{
+
+    img {
         max-width: 300px;
     }
+
+    @media screen and (max-width: 720px) {
+        img {
+            max-width: 150px;
+        }
+    }
+
+    @media screen and (max-width: 576px) {
+        img {
+            max-width: 150px;
+        }
+    }
+
+    @media screen and (min-width: 800px) {
+        img {
+            max-width: 250px;
+        }
+    }
+
+    @media screen and (max-width: 350px) {
+        img {
+            max-width: 150px;
+        }
+    }
 </style>
+
+
+
 
 

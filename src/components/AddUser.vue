@@ -1,5 +1,5 @@
 <template>
-  <button type="button" class="btn btn-primary" @click="showModal = true">Add User</button>
+  <button type="button" class="btn custom-btn" @click="showModal = true">Add User</button>
   <div class="modal" :class="{ 'show': showModal }">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -28,7 +28,6 @@
           <div class="mb-3">
             <input type="text" class="form-control w-50 mx-auto" placeholder="Role" v-model="payload.userRole">
           </div>
-          <!-- Add other input fields for user information -->
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" @click="closeModal">Close</button>
@@ -63,9 +62,7 @@ export default {
     async register() {
       try {
         await this.$store.dispatch("register", this.payload);
-        // Close modal after successful registration
         this.closeModal();
-        // Show success message
         Swal.fire({
           title: "Added Successful",
           text: "User has been added successfully!",
@@ -78,7 +75,6 @@ export default {
         }, 3000)
       } catch (error) {
         console.error(error);
-        // Show error message
         Swal.fire({
           title: "Error",
           text: "Failed to add user",
@@ -88,9 +84,7 @@ export default {
       }
     },
     closeModal() {
-      // Close modal
       this.showModal = false;
-      // Clear form fields
       this.payload = {
         userID: "",
         firstName: "",
@@ -107,13 +101,23 @@ export default {
 </script>
 
 <style scoped>
-/* Add your modal styles here */
 .modal {
-  display: none;
-  /* Other modal styles */
+  display: none
 }
 .modal.show {
   display: block;
+}
+.custom-btn {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgb(252, 252, 252);
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+  border: none;
+}
+
+.custom-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ca3679;
+  transform: scale(1.1);
 }
 </style>
 
