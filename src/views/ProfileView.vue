@@ -2,21 +2,24 @@
   <div id="app">
     <div class="container">
       <h1>Profile Page</h1>
-      <div v-if="user">
+      <div v-if="user" class="user-info">
         <p><strong>First Name:</strong> {{ user.firstName }}</p>
         <p><strong>Last Name:</strong> {{ user.lastName }}</p>
         <p><strong>Age:</strong> {{ user.userAge }}</p>
         <p><strong>Email:</strong> {{ user.emailAdd }}</p>
-        <button class="btn btn-primary" @click="editUser">Edit Profile</button>
-        <button class="btn btn-danger delete-btn" @click="confirmDeleteUser">Delete Account</button>
-        <button class="btn btn-secondary" @click="confirmLogout">Logout</button>
       </div>
       <div v-else>
         <p>No user data available</p>
       </div>
+      <div class="buttons">
+        <button class="btn btn-custom" @click="editUser">Edit Profile</button>
+        <button class="btn btn-danger delete-btn" @click="confirmDeleteUser">Delete Account</button>
+        <button class="btn btn-custom" @click="confirmLogout">Logout</button>   
+      </div>
     </div>
   </div>
 </template>
+
 
 <script>
 import Swal from 'sweetalert2';
@@ -117,19 +120,14 @@ export default {
   background-image: url('https://iili.io/JX9Ov5J.png');
   background-size: cover;
   background-position: center;
-  height: 100vh; /* Ensure the background covers the entire viewport height */
+  height: 100vh;
 }
 
 .container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 20px; /* Add padding to keep content away from the edges */
-  background-color: rgba(255, 255, 255, 0.8); /* Add a semi-transparent background to improve readability */
-}
-
-.row {
-  display: flex;
-  justify-content: space-between;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .col {
@@ -148,16 +146,32 @@ export default {
   border-radius: 6px;
 }
 
-.btn {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 6px;
-  cursor: pointer;
+.btn-custom,
+.delete-btn {
+  color: #ca3679;
+  background-color: #afabab76;
+  border-color: #676665;
+  transition: transform 0.2s; /* Add transition for scaling effect */
 }
 
-.delete-btn {
-  background-color: #dc3545;
+.btn-custom:hover,
+.delete-btn:hover {
+  color: #fff;
+  background-color: #ca3679;
+  border-color: #36676665;
+  transform: scale(1.05); /* Scale the button on hover */
 }
+
+.buttons {
+  margin-top: 20px;
+}
+
+.user-info p {
+  margin-bottom: 10px;
+}
+
+.buttons button {
+  margin-right: 10px;
+}
+
 </style>

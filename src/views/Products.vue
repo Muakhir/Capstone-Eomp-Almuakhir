@@ -161,6 +161,10 @@ export default {
         max-width: 300px;
     }
 
+    h4{
+        color: #fff;
+    }
+
     @media screen and (max-width: 720px) {
         img {
             max-width: 150px;

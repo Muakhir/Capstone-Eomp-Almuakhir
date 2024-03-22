@@ -25,7 +25,7 @@
             </div>
           </div>
           <div class="mb-3">
-            <button type="button" class="btn btn-primary" @click="login">Login</button>
+            <button type="button" class="btn btn-custom" @click="login">Login</button>
           </div>
         </div>
       </div>
@@ -91,9 +91,28 @@ export default {
     width: 100%;
   }
   
+input{
+  text-align: center;
+}
+
   .view-password-btn {
     margin-top: 8px;
   }
+
+  .btn-custom{
+  color: #36cac0;
+  background-color: #fffdfd5b;
+  border-color: #676665;
+  transition: transform 0.2s; /* Add transition for scaling effect */
+}
+
+.btn-custom:hover {
+  color: #fff;
+  background-color: #36cac0;
+  border-color: #36676665;
+  transform: scale(1.05); /* Scale the button on hover */
+}
+
   </style>
   
   

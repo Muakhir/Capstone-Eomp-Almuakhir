@@ -35,7 +35,7 @@
         </div>
       </div>
       <div class="mb-3">
-        <button type="button" class="btn btn-primary" @click="register">Register</button>
+        <button type="button" class="btn btn-custom" @click="register">Register</button>
       </div>
     </div>
   </main>
@@ -74,7 +74,6 @@ export default {
         }, 3000)
       } catch (error) {
         console.error(error);
-        // Show error message
         Swal.fire({
           title: "Error",
           text: "Failed to add user",
@@ -113,6 +112,7 @@ main {
 }
 
 .input-field {
+  text-align: center;
   width: 100%;
   height: 40px;
 }
@@ -120,5 +120,20 @@ main {
 .view-password-btn {
   margin-top: 8px;
 }
+
+.btn-custom{
+  color: #caa036;
+  background-color: #fffdfd5b;
+  border-color: #676665;
+  transition: transform 0.2s; 
+}
+
+.btn-custom:hover {
+  color: #fff;
+  background-color: #caa036;
+  border-color: #36676665;
+  transform: scale(1.05);
+}
+
 </style>
 

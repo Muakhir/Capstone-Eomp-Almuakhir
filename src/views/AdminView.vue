@@ -11,7 +11,10 @@
         </div>
       </div>
       <div class="container">
-        <div class="table-responsive">
+        <div class="table-responsive" v-if="loadingUsers">
+          <span><SpinnerVue /></span>
+        </div>
+        <div class="table-responsive" v-else>
           <table class="table">
             <thead>
               <tr>
@@ -59,7 +62,10 @@
               <span class="s2"><updateProduct /></span>
             </div>
           </div>
-          <div class="table-responsive">
+          <div class="table-responsive" v-if="loadingProducts">
+            <span><SpinnerVue /></span>
+          </div>
+          <div class="table-responsive" v-else>
             <table class="table">
               <thead>
                 <tr>
@@ -113,32 +119,43 @@ import updateUser from "../components/updateUser.vue"
 import AddUser from "../components/AddUser.vue"
 import updateProduct from "../components/updateProduct.vue"
 import AddProduct from "../components/AddProduct.vue"
-    export default {
-        components:{
-          AddUser,updateUser,updateProduct,AddProduct
-        },
-        computed:{
-            users(){
-                return this.$store.state.users;
-            },
-            products(){
-                return this.$store.state.products;
-            },
-        },
-        mounted(){
-            this.$store.dispatch("fetchUsers");
-            this.$store.dispatch("fetchProducts");
-        },
-        methods:{
-          deleteProduct(prodID){
-            this.$store.dispatch("deleteProduct",{id:prodID})
-          },
-          deleteUser(userID){
-            this.$store.dispatch("deleteUser",{id:userID})
-          }
-        }
-       
+import SpinnerVue from '@/components/Spinner.vue';
+
+export default {
+  components:{
+    AddUser, updateUser, updateProduct, AddProduct, SpinnerVue
+  },
+  data() {
+    return {
+      loadingUsers: true,
+      loadingProducts: true
+    };
+  },
+  computed:{
+    users(){
+      return this.$store.state.users;
+    },
+    products(){
+      return this.$store.state.products;
+    },
+  },
+  mounted(){
+    this.$store.dispatch("fetchUsers").then(() => {
+      this.loadingUsers = false;
+    });
+    this.$store.dispatch("fetchProducts").then(() => {
+      this.loadingProducts = false;
+    });
+  },
+  methods:{
+    deleteProduct(prodID){
+      this.$store.dispatch("deleteProduct",{id:prodID})
+    },
+    deleteUser(userID){
+      this.$store.dispatch("deleteUser",{id:userID})
     }
+  }
+}
 </script>
 
 <style scoped>
@@ -171,7 +188,7 @@ button.btn1 {
   transition: background-color 0.3s, color 0.3s, transform 0.3s;
   border: none;
 }
-  button.deleteButton {
+button.deleteButton {
   background-color: rgba(255, 255, 255, 0.1);
   color: rgb(252, 252, 252);
   transition: background-color 0.3s, color 0.3s, transform 0.3s;
@@ -185,7 +202,7 @@ button.btn:hover {
 }
 
 #prodImg {
-  max-width: 250px;
+  width: 250px;
 }
 
 .table .prod-amount {
@@ -196,17 +213,21 @@ button.btn:hover {
   margin-right: 10px;
 }
 
+.s2{
+  margin-left: 10px;
+}
+
 ::-webkit-scrollbar{
   width: 15px;
 }
 
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px rgb(255, 255, 255); 
+  box-shadow: inset 0 0 5px rgb(255,255, 255); 
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background:linear-gradient(72.5deg, #514a4d 30%, #19191a 79%);; 
+  background: linear-gradient(72.5deg, #514a4d 30%, #19191a 79%); 
   border-radius: 10px;
 }
 
@@ -220,6 +241,8 @@ button.btn:hover {
   }
 }
 </style>
+
+
 
 
 

@@ -1,22 +1,24 @@
 <template>
-  <div v-if="loading">
-    <span><SpinnerVue></SpinnerVue><SpinnerVue></SpinnerVue></span>
-  </div>
-  <main class="container-fluid">
-    <div class="row">
-      <div class="col text">
-        <h2>WELCOME TO <span class="mill" style="--i: 1">MILLENIUM</span></h2>
-      </div>
-      <div class="row">
-        <div class="col">
-          <img class="Himg" src="https://iili.io/JXSBe0g.jpg" alt="">
-        </div>
-        <div class="col">
-          <img class="Himg" src="https://iili.io/JXSBUeR.jpg" alt="">
-        </div>
-      </div>
+  <div>
+    <div v-if="loading">
+      <span><SpinnerVue></SpinnerVue><SpinnerVue></SpinnerVue></span>
     </div>
-  </main>
+    <main v-else class="container-fluid">
+      <div class="row">
+        <div class="col text">
+          <h2>WELCOME TO <span class="mill" style="--i: 1">MILLENIUM</span></h2>
+        </div>
+        <div class="row">
+          <div class="col">
+            <img class="Himg" src="https://iili.io/JXSBe0g.jpg" alt="">
+          </div>
+          <div class="col">
+            <img class="Himg" src="https://iili.io/JXSBUeR.jpg" alt="">
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
 </template>
 
 <script>
@@ -87,6 +89,22 @@ h2{
     color: #36cac0;
     text-shadow: none;
   }
+}
+
+.loading-container {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+
+.main-container {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 0.10s ease-out, transform 0.7s ease-out;
+}
+
+.main-container.show {
+  opacity: 1;
+  transform: translateX(0%);
 }
 
 @media (max-width: 768px) {

@@ -36,7 +36,7 @@
         </div>
       </div>
       <div class="mb-3">
-        <button type="button" class="btn btn-primary" @click="updateUser">Save Changes</button>
+        <button type="button" class="btn btn-custom" @click="updateUser">Save Changes</button>
       </div>
     </div>
   </main>
@@ -94,6 +94,11 @@ export default {
         Swal.fire('Error', 'No user is currently logged in.', 'error');
       }
     }
+  },
+  computed: {
+    passwordVisibilityIcon() {
+      return this.passwordFieldType === 'password' ? 'fa-eye-slash' : 'fa-eye';
+    }
   }
 };
 </script>
@@ -115,6 +120,7 @@ main {
 }
 
 .input-field {
+  text-align: center;
   width: 100%;
   height: 40px;
 }
@@ -122,4 +128,18 @@ main {
 .view-password-btn {
   margin-top: 8px;
 }
+
+.btn-custom {
+        color: #ca3679;
+        background-color: #ffffff76;
+        border-color: #676665;
+    }
+
+.btn-custom:hover {
+        color: #fff;
+        background-color: #ca3679;
+        border-color: #ca3679;
+    }
+
 </style>
+
