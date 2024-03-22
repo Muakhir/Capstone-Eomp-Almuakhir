@@ -92,7 +92,7 @@
                   <td class="d-flex gap-2">
                     <button
                       id="deleteBut"
-                      class="btn btn-success deleteButton"
+                      class="btn btn-success btn1"
                       @click="(event) => deleteProduct(product.prodID)"
                     >
                       Delete
@@ -163,7 +163,15 @@ table.table td {
   color: #fff;
 }
 
-button.btn {
+button.btn1 {
+  margin-top: 200px;
+  margin-bottom: 200px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgb(252, 252, 252);
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+  border: none;
+}
+  button.deleteButton {
   background-color: rgba(255, 255, 255, 0.1);
   color: rgb(252, 252, 252);
   transition: background-color 0.3s, color 0.3s, transform 0.3s;
@@ -181,11 +189,35 @@ button.btn:hover {
 }
 
 .table .prod-amount {
-  color: #caa036;
+  color: #fbce5c;
 }
 
 .s1{
   margin-right: 10px;
+}
+
+::-webkit-scrollbar{
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgb(255, 255, 255); 
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background:linear-gradient(72.5deg, #514a4d 30%, #19191a 79%);; 
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  button.btn1{
+    margin-top: 255px;
+    margin-bottom: 0px
+  }
+  #prodImg {
+    max-width: 150px;
+  }
 }
 </style>
 

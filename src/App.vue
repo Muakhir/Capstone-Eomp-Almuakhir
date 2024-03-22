@@ -37,5 +37,19 @@ main {
   background-position: center; 
   color: #ffffff;
 }
+
+::-webkit-scrollbar{
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgb(255, 255, 255); 
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background:linear-gradient(72.5deg, #4a4547 30%, #38383d6d 79%);; 
+  border-radius: 10px;
+}
 </style>
 

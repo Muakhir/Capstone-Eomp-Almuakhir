@@ -89,6 +89,24 @@ h2{
   }
 }
 
+@media (max-width: 768px) {
+  .Himg {
+    width: 100%;
+    height: auto; 
+    border-radius: 0;
+    box-shadow: none; 
+  }
+}
+
+@media (max-width: 576px) {
+  main {
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+}
 </style>
 
 

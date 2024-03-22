@@ -1,7 +1,7 @@
 <template>
     <!-- Button trigger modal -->
     <button type="button" class="btn modalButton custom-btn" data-bs-toggle="modal" data-bs-target="#updateProductModal">
-        Update Product
+        Update Prod
     </button>
   
     <!-- Modal -->

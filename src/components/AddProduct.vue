@@ -1,5 +1,5 @@
 <template>
-    <button type="button" class="btn custom-btn" @click="showModal = true">Add Product</button>
+    <button type="button" class="btn custom-btn" @click="showModal = true">Add Prod</button>
     <div class="modal" :class="{ 'show': showModal }">
       <div class="modal-dialog">
         <div class="modal-content">

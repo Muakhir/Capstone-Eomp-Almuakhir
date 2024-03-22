@@ -21,6 +21,7 @@
                             <p class="card-text  p-2">
                                 Amount: R{{ product.prodAmount }}
                             </p>
+                                <button class="btn btn-custom" @click="addToCart">Add to Cart</button>
                         </template>
                         <CartView/>
                     </Card>
@@ -37,7 +38,8 @@
 
 <script>
 import SpinnerVue from '@/components/Spinner.vue';
-import Card from '@/components/Card.vue';
+import Card from '@/components/Card.vue'; 
+import router from '@/router';
 export default {
     name: 'ProductView',
     components: {
@@ -48,6 +50,27 @@ export default {
         product() {
             return this.$store.state.product;
         },
+    },
+    methods:{
+        addToCart() {
+  if (this.product) {
+    let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    const found = cartItems.some(item => item.id === this.product.prodID);
+    if (!found) {
+      cartItems.push({ 
+        id: this.product.prodID,
+        prodName: this.product.prodName,
+        prodAmount: this.product.prodAmount,
+        prodQuantity: 1
+      });
+      localStorage.setItem('cart', JSON.stringify(cartItems));
+      router.push('/Cart')
+      alert('Product added to cart!');
+    } else {
+      alert('Product is already in the cart!');
+    }
+  }
+}
     },
     mounted() {
         this.$store.dispatch('fetchProduct', this.$route.params);
@@ -119,6 +142,18 @@ main {
     width: 30px;
     height: 30px;
 }
+
+.btn-custom {
+        color: #70f5ee;
+        background-color: #75727288;
+        border-color: #8f8e8b;
+    }
+
+.btn-custom:hover {
+        color: #fff;
+        background-color: #3aafa9;
+        border-color: #3aafa9;
+    }
 
 @keyframes spin {
     to {

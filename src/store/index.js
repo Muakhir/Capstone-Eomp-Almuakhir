@@ -15,7 +15,8 @@ export default createStore({
     users: null,
     user: null,
     products: null,
-    product: null
+    product: null,
+    cart: null
 
   },
   getters: {
@@ -32,6 +33,9 @@ export default createStore({
     },
     setProduct(state, value){
       state.product = value
+    },
+    setCart(state, value){
+      state.cart = value
     }
   },
   actions: {
