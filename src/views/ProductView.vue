@@ -4,8 +4,7 @@
             <div class="row" v-if="product">
                 <div class="col-md-6">
                     <Card :product="product[0]" class="card1">
-                        <template #CardImg>
-                            <!-- Add a conditional check -->
+                        <template #cardHeader>
                             <img v-if="product.prodImg" :src="product.prodImg" class="card-img">
                         </template>
                     </Card>
@@ -16,10 +15,10 @@
                             <h4 class="card-title">{{ product.prodName }}</h4>
                         </template>
                         <template #cardBody>
-                            <p class="card-text bg-dark-subtle p-2">
+                            <p class="card-text  p-2">
                                 Quantity: {{ product.prodQuantity }}
                             </p>
-                            <p class="card-text bg-dark-subtle p-2">
+                            <p class="card-text  p-2">
                                 Amount: R{{ product.prodAmount }}
                             </p>
                         </template>
@@ -82,16 +81,19 @@ main {
 
 
 .card-title {
+    color: #fff;
     text-align: center;
     margin-bottom: 10px;
 }
 
 .card-img {
-    max-width: 400px;
+    width: 100%;
 }
 
 .card-text {
+    background-color: #657272b2;
     margin: 0;
+    color: #fff;
 }
 
 .bg-gradient {
