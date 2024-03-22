@@ -22,6 +22,7 @@
                                 Amount: R{{ product.prodAmount }}
                             </p>
                         </template>
+                        <CartView/>
                     </Card>
                 </div>
             </div>
@@ -37,7 +38,6 @@
 <script>
 import SpinnerVue from '@/components/Spinner.vue';
 import Card from '@/components/Card.vue';
-
 export default {
     name: 'ProductView',
     components: {

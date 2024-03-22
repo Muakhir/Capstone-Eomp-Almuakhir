@@ -292,6 +292,71 @@ export default createStore({
         }
       }
   },
+  async fetchCart(context, payload) {
+    try {
+      let { result } = (await axios.get(`${URL}cart/${payload.id}`)).data;
+      if (result) {
+        context.commit("setCart", result);
+      }
+    } catch (error) {
+      console.error("Error fetching cart:", error);
+    }
+  },
+  
+  async addCart(context, payload) {
+    try {
+      let { msg } = await axios.post(`${URL}cart/add`, payload);
+      if (msg) {
+        context.dispatch("setCart");
+        Swal.fire({
+          title: "Update Successful",
+          text: "User has been updated successfully!",
+          icon: "success",
+          timer: 2000,
+          showConfirmButton: true,
+        });
+      }
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+    }
+  },
+  
+  async updateCart(context, { id, data }) {
+    try {
+      let { update } = await axios.patch(`${URL}cart/${id}/update`, data);
+      if (update) {
+        context.dispatch("setCart");
+        Swal.fire({
+          title: "Update Successful",
+          text: "User has been updated successfully!",
+          icon: "success",
+          timer: 2000,
+          showConfirmButton: true,
+        });
+      }
+    } catch (error) {
+      console.error("Error updating cart:", error);
+    }
+  },
+  
+  async deleteCart({ commit, dispatch }, payload) {
+    try {
+      await axios.delete(`${URL}cart/delete/${payload.id}`);
+      commit("setCart");
+      dispatch("fetchCart");
+      Swal.fire({
+        title: "Update Successful",
+        text: "User has been updated successfully!",
+        imageWidth: 250,
+        imageHeight: 250,
+        icon: "success",
+        timer: 2000,
+        showConfirmButton: true,
+      });
+    } catch (error) {
+      console.error("Error deleting cart item:", error);
+    }
+  },
   modules: {
   }
 })
